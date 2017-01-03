@@ -1,6 +1,6 @@
 services:
   translation.loader.db:
-        class: Webcook\Cms\Loaders\DBLoader
+        class: Webcook\Cms\Loader\DBLoader
         arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: translation.loader, alias: db}

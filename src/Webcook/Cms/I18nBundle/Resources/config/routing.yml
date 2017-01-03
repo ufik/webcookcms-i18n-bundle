@@ -1,3 +1,9 @@
-webcook_cms_i18n_homepage:
-    path:     /
-    defaults: { _controller: WebcookCmsI18nBundle:Default:index }
+webcook_cms_i18n_language:
+    resource: "@WebcookCmsI18nBundle/Controller/LanguageController.php"
+    type:     rest
+    prefix: /api
+
+webcook_cms_i18n_translation:
+    resource: "@WebcookCmsI18nBundle/Controller/TranslationController.php"
+    type:     rest
+    prefix: /api
