@@ -11,7 +11,8 @@ namespace Webcook\Cms\I18nBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Webcook\Cms\I18bBundle\Entity\Translation;
+use Webcook\Cms\I18nBundle\Entity\Translation;
+use Webcook\Cms\I18nBundle\Entity\Language;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -49,20 +50,20 @@ class LoadTranslationData implements FixtureInterface, ContainerAwareInterface, 
     {
         $this->manager = $manager;
 
-        $czechLanguage = $manager->getRepository('\Webcook\Cms\I18n\Language')->findAll()[0];
+        $czechLanguage = $manager->getRepository('\Webcook\Cms\I18nBundle\Entity\Language')->findAll()[0];
 
         $this->addTranslation('common.test.translation', $czechLanguage, 'This is test translation.');
         
         $this->manager->flush();
     }
 
-    private function addTranslation(String $key, Language $language, String $translation, String $domain = 'messages')
+    private function addTranslation(String $key, Language $language, String $translationText, String $domain = 'messages')
     {
         $translation = new Translation();
         $translation->setKey($key)
                  ->setLanguage($language)
-                 ->setCatalogue($catalogue)
-                 ->setTranslation($translation);
+                 ->setCatalogue($domain)
+                 ->setTranslation($translationText);
 
         $this->manager->persist($translation);
     }

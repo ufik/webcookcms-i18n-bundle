@@ -3,6 +3,7 @@
 namespace Webcook\Cms\I18nBundle\Loader;
 
 use Symfony\Component\Translation\Loader\LoaderInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class DBLoader implements LoaderInterface
 {
@@ -11,9 +12,9 @@ class DBLoader implements LoaderInterface
     /**
      * @param EntityManager $entityManager
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(ObjectManager $entityManager)
     {
-        $this->translationsRepository = $entityManager->getRepository("Webcook\Cms\Entity\Translation");
+        $this->translationsRepository = $entityManager->getRepository("Webcook\Cms\I18nBundle\Entity\Translation");
     }
  
     public function load($resource, $locale, $domain = 'messages')

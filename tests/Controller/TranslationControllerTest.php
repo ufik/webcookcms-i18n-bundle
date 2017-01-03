@@ -4,6 +4,15 @@ namespace Webcook\Cms\I18nBundle\Tests\Controller;
 
 class TranslationControllerTest extends \Webcook\Cms\CoreBundle\Tests\BasicTestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->loadFixtures(array(
+            'Webcook\Cms\I18nBundle\DataFixtures\ORM\LoadTranslationData'
+        ));
+    }
+
     public function testGetTranslations()
     {
         $this->createTestClient();
@@ -41,6 +50,7 @@ class TranslationControllerTest extends \Webcook\Cms\CoreBundle\Tests\BasicTestC
             array(
                 'translation' => array(
                     'key' => 'common.test.new',
+                    'catalogue' => 'messages',
                     'language' => 1,
                     'translation' => 'Another translation'
                 ),
@@ -51,7 +61,7 @@ class TranslationControllerTest extends \Webcook\Cms\CoreBundle\Tests\BasicTestC
 
         $translations = $this->em->getRepository('Webcook\Cms\I18nBundle\Entity\Translation')->findAll();
 
-        $this->assertCount(4, $translations);
+        $this->assertCount(2, $translations);
         $this->assertEquals('common.test.new', $translations[1]->getKey());
         $this->assertEquals('Another translation', $translations[1]->getTranslation());
         $this->assertEquals('cs', $translations[1]->getLanguage()->getLocale());
@@ -70,6 +80,7 @@ class TranslationControllerTest extends \Webcook\Cms\CoreBundle\Tests\BasicTestC
                 'translation' => array(
                     'key' => 'common.test.changed', // Really need to change key? Or prohibit
                     'language' => 1,
+                    'catalogue' => 'messages',
                     'translation' => 'Still same message, but different.'
                 ),
             )
@@ -77,7 +88,7 @@ class TranslationControllerTest extends \Webcook\Cms\CoreBundle\Tests\BasicTestC
 
         $this->assertTrue($this->client->getResponse()->isSuccessful());
 
-        $translation = $this->em->getRepository('Webcook\Cms\CoreBundle\Entity\Translation')->find(1);
+        $translation = $this->em->getRepository('Webcook\Cms\I18nBundle\Entity\Translation')->find(1);
 
         $this->assertEquals('common.test.changed', $translation->getKey());
         $this->assertEquals('Still same message, but different.', $translation->getTranslation());
@@ -93,7 +104,7 @@ class TranslationControllerTest extends \Webcook\Cms\CoreBundle\Tests\BasicTestC
 
         $this->assertTrue($this->client->getResponse()->isSuccessful());
 
-        $Translations = $this->em->getRepository('Webcook\Cms\CoreBundle\Entity\translation')->findAll();
+        $Translations = $this->em->getRepository('Webcook\Cms\I18nBundle\Entity\translation')->findAll();
 
         $this->assertCount(0, $Translations);
     }
@@ -126,6 +137,7 @@ class TranslationControllerTest extends \Webcook\Cms\CoreBundle\Tests\BasicTestC
                 'translation' => array(
                     'key' => 'common.test.nonexisting',
                     'language' => 2,
+                    'catalogue' => 'messages',
                     'translation' => 'New translation.'
                 ),
             )
@@ -133,13 +145,13 @@ class TranslationControllerTest extends \Webcook\Cms\CoreBundle\Tests\BasicTestC
 
         $this->assertTrue($this->client->getResponse()->isSuccessful());
 
-        $translations = $this->em->getRepository('Webcook\Cms\CoreBundle\Entity\Translation')->findAll();
+        $translations = $this->em->getRepository('Webcook\Cms\I18nBundle\Entity\Translation')->findAll();
 
         $this->assertCount(2, $translations);
-        $this->assertEquals('common.test.nonexisting', $translations[1]->getTitle());
+        $this->assertEquals('common.test.nonexisting', $translations[1]->getKey());
         $this->assertEquals('New translation.', $translations[1]->getTranslation());
         $this->assertEquals('messages', $translations[1]->getCatalogue());
-        $this->assertEquals('cs', $translations[1]->getLanguage()->getLocale());
+        $this->assertEquals('en', $translations[1]->getLanguage()->getLocale());
     }
 
     public function testWrongPut()

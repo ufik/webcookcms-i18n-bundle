@@ -181,18 +181,6 @@ class TranslationController extends BaseRestController
                 $this->getEntityManager()->persist($translation);
             }
 
-            if ($translation->isDefault()) {
-                $translations = $this->getEntityManager()->getRepository('Webcook\Cms\I18nBundle\Entity\Translation')->findBy(array(
-                    'default' => true
-                ));
-
-                foreach ($translations as $l) {
-                    if ($l !== $translation) {
-                        $l->setDefault(false);
-                    }
-                }
-            }
-
             $this->getEntityManager()->flush();
 
             return $translation;

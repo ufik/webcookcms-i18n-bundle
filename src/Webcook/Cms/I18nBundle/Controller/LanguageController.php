@@ -12,8 +12,8 @@ use Webcook\Cms\CoreBundle\Base\BaseRestController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Webcook\Cms\CoreBundle\Entity\Language;
-use Webcook\Cms\CoreBundle\Form\Type\LanguageType;
+use Webcook\Cms\I18nBundle\Entity\Language;
+use Webcook\Cms\I18nBundle\Form\Type\LanguageType;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Webcook\Cms\SecurityBundle\Authorization\Voter\WebcookCmsVoter;
 use FOS\RestBundle\Controller\Annotations\Get;
@@ -40,7 +40,7 @@ class LanguageController extends BaseRestController
     {
         $this->checkPermission(WebcookCmsVoter::ACTION_VIEW);
 
-        $languages = $this->getEntityManager()->getRepository('Webcook\Cms\CoreBundle\Entity\Language')->findAll();
+        $languages = $this->getEntityManager()->getRepository('Webcook\Cms\I18nBundle\Entity\Language')->findAll();
         $view = $this->view($languages, 200);
 
         return $this->handleView($view);
@@ -74,8 +74,8 @@ class LanguageController extends BaseRestController
      *
      * @ApiDoc(
      *  description="Create a new Language.",
-     *  input="Webcook\Cms\CoreBundle\Form\Type\LanguageType",
-     *  output="Webcook\Cms\CoreBundle\Entity\Language",
+     *  input="Webcook\Cms\I18nBundle\Form\Type\LanguageType",
+     *  output="Webcook\Cms\I18nBundle\Entity\Language",
      * )
      * @Post(options={"i18n"=false})
      */
@@ -105,8 +105,8 @@ class LanguageController extends BaseRestController
      *
      * @ApiDoc(
      *  description="Update existing Language.",
-     *  input="Webcook\Cms\CoreBundle\Form\Type\LanguageType",
-     *  output="Webcook\Cms\CoreBundle\Entity\Language"
+     *  input="Webcook\Cms\I18nBundle\Form\Type\LanguageType",
+     *  output="Webcook\Cms\I18nBundle\Entity\Language"
      * )
      * @Put(options={"i18n"=false})
      */
@@ -182,7 +182,7 @@ class LanguageController extends BaseRestController
             }
 
             if ($language->isDefault()) {
-                $languages = $this->getEntityManager()->getRepository('Webcook\Cms\CoreBundle\Entity\Language')->findBy(array(
+                $languages = $this->getEntityManager()->getRepository('Webcook\Cms\I18nBundle\Entity\Language')->findBy(array(
                     'default' => true
                 ));
 
@@ -213,9 +213,9 @@ class LanguageController extends BaseRestController
     private function getLanguageById($id, $expectedVersion = null)
     {
         if ($expectedVersion) {
-            $language = $this->getEntityManager()->getRepository('Webcook\Cms\CoreBundle\Entity\Language')->find($id, LockMode::OPTIMISTIC, $expectedVersion);
+            $language = $this->getEntityManager()->getRepository('Webcook\Cms\I18nBundle\Entity\Language')->find($id, LockMode::OPTIMISTIC, $expectedVersion);
         } else {
-            $language = $this->getEntityManager()->getRepository('Webcook\Cms\CoreBundle\Entity\Language')->find($id);
+            $language = $this->getEntityManager()->getRepository('Webcook\Cms\I18nBundle\Entity\Language')->find($id);
         }
 
         if (!$language instanceof Language) {

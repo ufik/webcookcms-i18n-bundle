@@ -42,7 +42,7 @@ class Translation extends BasicEntity
      *
      * @return self
      */
-    private function setKey($key)
+    public function setKey($key)
     {
         $this->key = $key;
 
@@ -66,7 +66,7 @@ class Translation extends BasicEntity
      *
      * @return self
      */
-    private function setLanguage($language)
+    public function setLanguage($language)
     {
         $this->language = $language;
 
@@ -90,7 +90,7 @@ class Translation extends BasicEntity
      *
      * @return self
      */
-    private function setTranslation($translation)
+    public function setTranslation($translation)
     {
         $this->translation = $translation;
 
@@ -114,7 +114,7 @@ class Translation extends BasicEntity
      *
      * @return self
      */
-    private function setCatalogue($catalogue)
+    public function setCatalogue($catalogue)
     {
         $this->catalogue = $catalogue;
 

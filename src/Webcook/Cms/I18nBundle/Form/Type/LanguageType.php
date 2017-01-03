@@ -36,11 +36,11 @@ class LanguageType extends AbstractType
                 ),
                 'label' => 'common.languages.form.name',
             ))
-            ->add('abbr', TextType::class, array(
+            ->add('locale', TextType::class, array(
                 'constraints' => array(
-                    new NotBlank(array('message' => 'common.languages.form.abbr.required')),
+                    new NotBlank(array('message' => 'common.languages.form.locale.required')),
                 ),
-                'label' => 'common.languages.form.abbr',
+                'label' => 'common.languages.form.locale',
             ))->add('default', CheckboxType::class, array(
                 'constraints' => array(
                     new NotBlank(array('message' => 'common.languages.form.default.required')),
@@ -57,7 +57,7 @@ class LanguageType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => \Webcook\Cms\CoreBundle\Entity\Language::class,
+            'data_class' => \Webcook\Cms\I18nBundle\Entity\Language::class,
             'csrf_protection'   => false,
         ));
     }

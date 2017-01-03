@@ -1,0 +1,2 @@
+webcook_cms_i18n:
+    resource: "@WebcookCmsI18nBundle/Resources/config/routing.yml"

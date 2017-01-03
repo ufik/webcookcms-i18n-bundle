@@ -26,7 +26,7 @@ class LanguageControllerTest extends \Webcook\Cms\CoreBundle\Tests\BasicTestCase
         $this->assertEquals(1, $data['id']);
         $this->assertEquals(1, $data['version']);
         $this->assertEquals('Čeština', $data['title']);
-        $this->assertEquals('cs', $data['abbr']);
+        $this->assertEquals('cs', $data['locale']);
     }
 
     public function testPost()
@@ -39,7 +39,7 @@ class LanguageControllerTest extends \Webcook\Cms\CoreBundle\Tests\BasicTestCase
             array(
                 'language' => array(
                     'title' => 'Test lang',
-                    'abbr' => 'tl',
+                    'locale' => 'tl',
                     'default' => true
                 ),
             )
@@ -47,11 +47,11 @@ class LanguageControllerTest extends \Webcook\Cms\CoreBundle\Tests\BasicTestCase
 
         $this->assertTrue($this->client->getResponse()->isSuccessful());
 
-        $languages = $this->em->getRepository('Webcook\Cms\I18n\Entity\Language')->findAll();
+        $languages = $this->em->getRepository('Webcook\Cms\I18nBundle\Entity\Language')->findAll();
 
         $this->assertCount(4, $languages);
         $this->assertEquals('Test lang', $languages[3]->getTitle());
-        $this->assertEquals('tl', $languages[3]->getAbbr());
+        $this->assertEquals('tl', $languages[3]->getLocale());
         $this->assertTrue($languages[3]->isDefault());
         $this->assertFalse($languages[0]->isDefault());
     }
@@ -67,7 +67,7 @@ class LanguageControllerTest extends \Webcook\Cms\CoreBundle\Tests\BasicTestCase
             array(
                 'language' => array(
                     'title' => 'English updated',
-                    'abbr' => 'en',
+                    'locale' => 'en',
                     'default' => true
                 ),
             )
@@ -75,11 +75,11 @@ class LanguageControllerTest extends \Webcook\Cms\CoreBundle\Tests\BasicTestCase
 
         $this->assertTrue($this->client->getResponse()->isSuccessful());
 
-        $language = $this->em->getRepository('Webcook\Cms\I18n\Entity\Language')->find(2);
-        $languages = $this->em->getRepository('Webcook\Cms\I18n\Entity\Language')->findAll();
+        $language = $this->em->getRepository('Webcook\Cms\I18nBundle\Entity\Language')->find(2);
+        $languages = $this->em->getRepository('Webcook\Cms\I18nBundle\Entity\Language')->findAll();
 
         $this->assertEquals('English updated', $language->getTitle());
-        $this->assertEquals('en', $language->getAbbr());
+        $this->assertEquals('en', $language->getLocale());
         $this->assertTrue($language->isDefault());
         $this->assertFalse($languages[0]->isDefault());
     }
@@ -92,7 +92,7 @@ class LanguageControllerTest extends \Webcook\Cms\CoreBundle\Tests\BasicTestCase
 
         $this->assertTrue($this->client->getResponse()->isSuccessful());
 
-        $Languages = $this->em->getRepository('Webcook\Cms\I18n\Entity\Language')->findAll();
+        $Languages = $this->em->getRepository('Webcook\Cms\I18nBundle\Entity\Language')->findAll();
 
         $this->assertCount(2, $Languages);
     }
@@ -124,7 +124,7 @@ class LanguageControllerTest extends \Webcook\Cms\CoreBundle\Tests\BasicTestCase
             array(
                 'language' => array(
                     'title' => 'Spanish',
-                    'abbr' => 'es',
+                    'locale' => 'es',
                     'default' => true
                 ),
             )
@@ -132,11 +132,11 @@ class LanguageControllerTest extends \Webcook\Cms\CoreBundle\Tests\BasicTestCase
 
         $this->assertTrue($this->client->getResponse()->isSuccessful());
 
-        $languages = $this->em->getRepository('Webcook\Cms\I18n\Entity\Language')->findAll();
+        $languages = $this->em->getRepository('Webcook\Cms\I18nBundle\Entity\Language')->findAll();
 
         $this->assertCount(4, $languages);
         $this->assertEquals('Spanish', $languages[3]->getTitle());
-        $this->assertEquals('es', $languages[3]->getAbbr());
+        $this->assertEquals('es', $languages[3]->getLocale());
         $this->assertFalse($languages[0]->isDefault());
     }
 
