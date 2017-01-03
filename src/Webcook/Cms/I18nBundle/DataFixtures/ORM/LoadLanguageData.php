@@ -60,8 +60,8 @@ class LoadLanguageData implements FixtureInterface, ContainerAwareInterface, Ord
     {
         $language = new Language();
         $language->setTitle($title)
-                 ->setLocale($abbr)
-                 ->setDefault($default);
+                    ->setLocale($abbr)
+                    ->setDefault($default);
 
         $this->manager->persist($language);
     }

@@ -10,7 +10,7 @@ class DBLoader implements LoaderInterface
     private $languageRepository;
  
     /**
-     * @param EntityManager $entityManager
+     * @param ObjectManager $entityManager
      */
     public function __construct(ObjectManager $entityManager)
     {

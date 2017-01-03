@@ -9,8 +9,6 @@
 namespace Webcook\Cms\I18nBundle\Controller;
 
 use Webcook\Cms\CoreBundle\Base\BaseRestController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Webcook\Cms\I18nBundle\Entity\Language;
 use Webcook\Cms\I18nBundle\Form\Type\LanguageType;

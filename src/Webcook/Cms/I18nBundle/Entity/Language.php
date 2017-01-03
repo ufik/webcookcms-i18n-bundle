@@ -63,7 +63,7 @@ class Language extends BasicEntity
     /**
      * Get whether language is default or not.
      *
-     * @return String Returns if language is default.
+     * @return boolean Returns if language is default.
      */
     public function isDefault()
     {
@@ -83,7 +83,7 @@ class Language extends BasicEntity
     /**
      * Sets the value of title.
      *
-     * @param mixed $title the title
+     * @param string $title the title
      *
      * @return self
      */
