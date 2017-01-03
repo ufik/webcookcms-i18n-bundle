@@ -1,6 +1,6 @@
 <?php
 
-namespace Webcook\Cms\Loader;
+namespace Webcook\Cms\I18nBundle\Loader;
 
 use Symfony\Component\Translation\Loader\LoaderInterface;
 
