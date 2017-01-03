@@ -1,0 +1,6 @@
+parameters:
+    resources_path: %kernel.root_dir%/../../../../../../../../src/Webcook/Cms/I18nBundle/Controller
+
+framework:
+    router:
+        resource: "%kernel.root_dir%/../../../../../../../../tests/routing.yml"

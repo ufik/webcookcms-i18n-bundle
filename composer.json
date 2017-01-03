@@ -1,0 +1,24 @@
+{
+    "name": "webcookcms/i18n-bundle",
+    "description": "WebcookCMS internationalization library.",
+    "keywords": ["bundle", "internationalization", "cms"],
+    "minimum-stability" : "dev",
+    "prefer-stable": true,
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Tomas Voslar"
+        }
+    ],
+    "require": {
+        "webcookcms/core-bundle": "~1.0@dev"
+    },
+    "autoload": {
+        "psr-0": { "Webcook\\Cms\\I18nBundle": "src/" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}

@@ -1,0 +1,3 @@
+webcook_cms_i18n_homepage:
+    path:     /
+    defaults: { _controller: WebcookCmsI18nBundle:Default:index }
