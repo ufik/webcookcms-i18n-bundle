@@ -3,11 +3,12 @@
 namespace Webcook\Cms\I18nBundle\Loader;
 
 use Symfony\Component\Translation\Loader\LoaderInterface;
+use Symfony\Component\Translation\MessageCatalogue;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class DBLoader implements LoaderInterface
 {
-    private $languageRepository;
+    private $translationsRepository;
  
     /**
      * @param ObjectManager $entityManager
