@@ -87,7 +87,7 @@ class Language extends BasicEntity
      *
      * @return self
      */
-    private function setTitle($title)
+    public function setTitle($title)
     {
         $this->title = $title;
 
