@@ -61,9 +61,9 @@ class LoadTranslationData implements FixtureInterface, ContainerAwareInterface, 
     {
         $translation = new Translation();
         $translation->setKey($key)
-                 ->setLanguage($language)
-                 ->setCatalogue($domain)
-                 ->setTranslation($translationText);
+                    ->setLanguage($language)
+                    ->setCatalogue($domain)
+                    ->setTranslation($translationText);
 
         $this->manager->persist($translation);
     }
