@@ -1,6 +1,6 @@
 <?php
 
-namespace Webcook\Cms\CoreBundle\Entity;
+namespace Webcook\Cms\I18nBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Webcook\Cms\CoreBundle\Base\BasicEntity;
