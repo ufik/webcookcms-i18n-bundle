@@ -21,7 +21,7 @@ class TranslationControllerTest extends \Webcook\Cms\CoreBundle\Tests\BasicTestC
         $translations = $this->client->getResponse()->getContent();
 
         $data = json_decode($translations, true);
-        $this->assertCount(1, $data);
+        $this->assertCount(2, $data);
     }
 
     public function testGetTranslation()
@@ -37,7 +37,7 @@ class TranslationControllerTest extends \Webcook\Cms\CoreBundle\Tests\BasicTestC
         $this->assertEquals('common.test.translation', $data['key']);
         $this->assertEquals('This is test translation.', $data['translation']);
         $this->assertEquals('messages', $data['catalogue']);
-        $this->assertEquals('cs', $data['language']['locale']);
+        $this->assertEquals('en', $data['language']['locale']);
     }
 
     public function testPost()
@@ -61,11 +61,11 @@ class TranslationControllerTest extends \Webcook\Cms\CoreBundle\Tests\BasicTestC
 
         $translations = $this->em->getRepository('Webcook\Cms\I18nBundle\Entity\Translation')->findAll();
 
-        $this->assertCount(2, $translations);
-        $this->assertEquals('common.test.new', $translations[1]->getKey());
-        $this->assertEquals('Another translation', $translations[1]->getTranslation());
-        $this->assertEquals('cs', $translations[1]->getLanguage()->getLocale());
-        $this->assertEquals('messages', $translations[1]->getCatalogue());
+        $this->assertCount(3, $translations);
+        $this->assertEquals('common.test.new', $translations[2]->getKey());
+        $this->assertEquals('Another translation', $translations[2]->getTranslation());
+        $this->assertEquals('cs', $translations[2]->getLanguage()->getLocale());
+        $this->assertEquals('messages', $translations[2]->getCatalogue());
     }
 
     public function testPut()
@@ -106,7 +106,7 @@ class TranslationControllerTest extends \Webcook\Cms\CoreBundle\Tests\BasicTestC
 
         $Translations = $this->em->getRepository('Webcook\Cms\I18nBundle\Entity\translation')->findAll();
 
-        $this->assertCount(0, $Translations);
+        $this->assertCount(1, $Translations);
     }
 
     public function testWrongPost()

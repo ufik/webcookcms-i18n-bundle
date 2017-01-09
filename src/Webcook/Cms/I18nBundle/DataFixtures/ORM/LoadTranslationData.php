@@ -51,8 +51,10 @@ class LoadTranslationData implements FixtureInterface, ContainerAwareInterface, 
         $this->manager = $manager;
 
         $czechLanguage = $manager->getRepository('\Webcook\Cms\I18nBundle\Entity\Language')->findAll()[0];
+        $englishLanguage = $manager->getRepository('\Webcook\Cms\I18nBundle\Entity\Language')->findAll()[1];
 
-        $this->addTranslation('common.test.translation', $czechLanguage, 'This is test translation.');
+        $this->addTranslation('common.test.translation', $englishLanguage, 'This is test translation.');
+        $this->addTranslation('common.test.translation', $czechLanguage, 'Test prekladace.');
         
         $this->manager->flush();
     }

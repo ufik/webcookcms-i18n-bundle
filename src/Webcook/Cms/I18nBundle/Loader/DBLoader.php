@@ -9,6 +9,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 class DBLoader implements LoaderInterface
 {
     private $translationsRepository;
+
+    private $languageRepository;
  
     /**
      * @param ObjectManager $entityManager
@@ -16,13 +18,19 @@ class DBLoader implements LoaderInterface
     public function __construct(ObjectManager $entityManager)
     {
         $this->translationsRepository = $entityManager->getRepository("Webcook\Cms\I18nBundle\Entity\Translation");
+        $this->languageRepository     = $entityManager->getRepository("Webcook\Cms\I18nBundle\Entity\Language");
     }
  
     public function load($resource, $locale, $domain = 'messages')
     {
+        // TODO write just one query join on locale
+        $language = $this->languageRepository->findOneBy(array(
+            'locale' => $locale
+        ));
+
         $translations = $this->translationsRepository->findBy(array(
-            'language.locale' => $locale,
-            'catalogue'       => $domain
+            'language'  => $language,
+            'catalogue' => $domain
         ));
  
         $catalogue = new MessageCatalogue($locale);

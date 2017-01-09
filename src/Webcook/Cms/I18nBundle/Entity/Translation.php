@@ -13,7 +13,7 @@ use Webcook\Cms\CoreBundle\Base\BasicEntity;
  */
 class Translation extends BasicEntity
 {
-    /** @ORM\Column(name="key", type="string", length=128) */
+    /** @ORM\Column(name="translation_key", type="string", length=128) */
     private $key;
 
     /** @ORM\Column(name="catalogue", type="string", length=128) */
