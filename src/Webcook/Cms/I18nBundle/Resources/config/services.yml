@@ -4,3 +4,9 @@ services:
         arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: translation.loader, alias: db}
+
+  language_post_write_event_subscriber:
+        class: 'Webcook\Cms\I18nBundle\EventSubscriber\LanguageDefaultSubscriber'
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: kernel.event_subscriber }

@@ -4,25 +4,43 @@ namespace Webcook\Cms\I18nBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Webcook\Cms\CoreBundle\Base\BasicEntity;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Translation entity used for translations of strings.
  *
  * @ORM\Entity
  * @ORM\Table(name="Translation")
+ * @ApiResource
  */
 class Translation extends BasicEntity
 {
-    /** @ORM\Column(name="translation_key", type="string", length=128) */
+    /** 
+     * @ORM\Column(name="translation_key", type="string", length=128) 
+     * @Assert\NotBlank
+     * @Assert\NotNull
+     */
     private $key;
 
-    /** @ORM\Column(name="catalogue", type="string", length=128) */
+    /** 
+     * @ORM\Column(name="catalogue", type="string", length=128) 
+     * @Assert\NotNull
+     * @Assert\NotBlank
+     */
     private $catalogue;
 
-    /** @ORM\ManyToOne(targetEntity="Language") */
+    /** 
+     * @ORM\ManyToOne(targetEntity="Language") 
+     * @Assert\NotNull
+     */
     private $language;
 
-    /** @ORM\Column(name="translation", type="text") */
+    /**
+     * @ORM\Column(name="translation", type="text")
+     * @Assert\NotBlank
+     * @Assert\NotNull
+     */
     private $translation;
 
     /**

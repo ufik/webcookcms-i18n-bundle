@@ -1,2 +1,7 @@
 webcook_cms_i18n:
     resource: "@WebcookCmsI18nBundle/Resources/config/routing.yml"
+
+api_platform:
+    resource: '.'
+    type:     'api_platform'
+    prefix:   '/api' # Optional
