@@ -16,15 +16,15 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Language extends BasicEntity
 {
-    /** 
-     * @ORM\Column(name="title", type="string", length=55) 
+    /**
+     * @ORM\Column(name="title", type="string", length=55)
      * @Assert\NotBlank
      * @Assert\NotNull
      */
     private $title;
 
-    /** 
-     * @ORM\Column(name="locale", type="string", length=2) 
+    /**
+     * @ORM\Column(name="locale", type="string", length=2)
      * @Assert\NotBlank
      * @Assert\NotNull
      */
